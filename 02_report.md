@@ -33,7 +33,27 @@
 
 >git push
 - 로컬 저장소의 버전을 원격저장소로 보냄
+- push가 되지않을 때 방법
+  - main / master 확인
+  - rejected 될 때
+    - git push origin +master/main
+
 
 >git pull 
 - 원격 저장소의 버전을 로컬 저장소로 가져옴
 
+>git clone
+- 원격 저장소를 복제하여 가져옴
+
+> pull과 clone의 차이점
+- clone : 원격저장소 복제
+- pull : 원격저장소 커밋가져오기
+
+>git remote
+  - 원격저장소 사용
+    - // -v 
+      - 원격저장소 정보 확인
+    - // add <원격저장소><url>
+      - 원격저장소 추가(origin)
+    - // rm <원격저장소>
+      - 원격저장소 삭제
