@@ -39,6 +39,9 @@
 > 기본적인 흐름
 
 ```
-Git init -> touch <file> -> git add . -> git commit -m ‘ name ‘ -> git log -> git branch <b_name> - > git checkout <b_name> -> touch <file> -> git add. -> git commit -m ‘ name ‘ -> git checkout master -> git log –oneline -> git merge <b_name> -> git branch -d <b_name>
+Git init -> touch <file> -> git add . -> git commit -m ‘ name ‘ -> 
+git log -> git branch <b_name> - > git checkout <b_name> -> 
+touch <file> -> git add. -> git commit -m ‘ name ‘ -> git checkout master -> 
+git log –oneline -> git merge <b_name> -> git branch -d <b_name>
 ```
 
