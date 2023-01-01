@@ -46,3 +46,6 @@ git checkout master -> git log –oneline -> git merge <b_name> ->
 git branch -d <b_name>
 ```
 
+# Folk
+
+- [내용 정리](https://hg-edu.notion.site/GitHub-Pull-Request-fdea6eb3d7054b36ae8ee2888b6e1f9b)
