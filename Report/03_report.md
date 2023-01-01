@@ -2,7 +2,7 @@
 > Branch란?
 - 독립적인 작업흐름 만들고 관리
 
-## 코드
+## 주요 명령어
 
 > 브랜치 생성
 
@@ -35,6 +35,11 @@
 - 원격에서 브랜치 삭제하기 명령어
 
 ```git push origin --delete < b_name >```
+
+## Git flow
+> Shared Repository Model
+- 팀원 초대
+
 
 > 기본적인 흐름
 
