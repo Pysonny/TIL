@@ -36,6 +36,7 @@
   id(x)
   # 4068491
 
+  ```
 - 같은 값 , 다른 값을 동시에 할당 가능
   ```
   x = y = 1004
@@ -172,3 +173,133 @@
 ```
 # 주석입니다
 ```
+
+> 자료형 변환
+- 암시적 형 변환 
+  - 사용자가 의도하지 않고 , 파이썬 내부적으로 자료형을 변환 하는 경우 ( bool , Numeric type)
+- 명시적 형 변환
+  - int
+  - float
+  - str
+- String Interpolation
+  - f-string
+  ```
+  name = 'kim'
+  score = 4.5
+  print(f'Hello, {name}! 성적은 {score}')
+  ```
+
+---
+
+## 제어문
+
+![Example](../images/ex.jpg)
+
+> 제어문이란?
+- 파이썬은 위에서부터 아래로 순차적으로 명력을 수행
+- 특정상황에 따라 코드를 선택적으로 실행 하거나 반복하는 제어가 필요함
+
+> 조건문이란?
+- 조건문은 참/거짓을 판단할 수 있는 조건식과 함께 사용
+- 기본형식
+  - 참/거짓에 대한 조건식
+    - 조건이 참인 경우 이후 들여쓰기 코드 실행
+    - 이외의 경우 else 이후 들여쓰기 코드 실행
+      - else 는 선택적 활용가능
+    ```
+    if <expression > :
+
+    else:
+    ```
+    ex)
+    ```
+    a = -10
+    if a >= 0:
+        print('양수')
+    else:
+        print('음수')
+    ## 음수
+    ```
+    - elif
+      - 복수의 조건식 활용
+  
+    나쁜 예 )
+    ```
+    dust = int(input('미세먼지 농도는? :'))
+    if 0< dust <= 30 :
+        print('좋음')
+    elif 30 < dust <=80:
+        print('보통')
+    elif 80 < dust <=150:
+        print('나쁨')
+    else:
+        print('매우나쁨')
+    ```
+
+    좋은 예)
+    ```
+    dust = int(input('미세먼지 농도는? :'))
+    if dust > 150 :
+        print('매우 나쁨')
+    elif dust > 80:
+        print('나쁨')
+    elif dust > 30:
+        print('보통')
+    else:
+        print('좋음')
+    print('미세먼지 확인 완료')
+    ```
+
+  - range
+    - 숫자의 시퀀스를 나타내기 위해 사용
+    - 기본형
+      - range(n)
+      - 0부터 n-1까지의 숫자의 시퀀스
+    - 범위지정
+      - range(n,m)
+      - n부터 m-1 까지의 숫자의 시퀀스
+    - 범위 및 스텝 지정 
+      - range(n,m,s)
+      - n부터 m-1까지 s만큼 증가시키며 숫자의 시퀀스
+        - 문장 전체를 나타낼 때
+          - `for i in range(len(a))`
+
+## 반복문
+> 종류
+- for 문
+  - 반복가능한 객체(string, tuple, list , range)를 모두 순회하면 종료
+  ```
+  a = ' apple'
+
+  for char in a:
+      print(char)
+
+     # a
+       p
+       p
+       l
+       e
+  ```
+> 반복문 제어
+- break
+  - 반복문을 종료
+- continue
+  - 이후의 코드 블록은 수행하지 않고, 다음 반복을 수행
+  - end ' ' : 다음을 엔터가 아닌 스페이스바로 해서 가로로 출력 가능
+- for -else
+  - 끝까지 반복문을 실행한 이후에 else문 실행
+ 
+
+- while 문
+
+
+
+
+
+
+
+
+
+ 추가 주소
+  - [python tutor](https://pythontutor.com/python-debugger.html#mode=edit)
+
