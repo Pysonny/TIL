@@ -115,7 +115,7 @@
     - 딕셔너리
 
 ## 시퀀스형 컨테이너 ( Sequence Container )
-
+---
 ## 문자열 ( String Type )
 
 - 모든 문자는 str type
@@ -263,7 +263,7 @@
       - n부터 m-1까지 s만큼 증가시키며 숫자의 시퀀스
         - 문장 전체를 나타낼 때
           - `for i in range(len(a))`
-
+---
 ## 반복문
 > 종류
 - for 문
@@ -280,6 +280,23 @@
        l
        e
   ```
+- range index
+
+> while 문
+- 반복해서 조건이 있는 문장 실행
+  ```
+  a = 0
+  while a < 5:
+      print(a)
+      a = a + 1  
+      #이 문장 없으면 무한반복실행
+  print('끝')
+  ```
+
+
+
+
+
 > 반복문 제어
 - break
   - 반복문을 종료
@@ -289,9 +306,29 @@
 - for -else
   - 끝까지 반복문을 실행한 이후에 else문 실행
  
+---
+## 함수
+> 함수란?
+- 정의
+  - 특정한 기능을 하는 코드의 조각
+- 사용이유
+  - Abstraction(추상)
+    - 재사옹성,가독성,생산성
+      - ex
+        - `name = '파이썬'`
+        - `print('hypergrowth!')`
+- 내장함수
+![function](../images/function.jpg)
+  - print(*objects)
+    - *objects : *은 여러 값을 무한하게 받을 수 있다.
+    - sep= ' '  : 기본값이 space
+    - end= ' ' : 기본값이 줄바꿈 (\n)
+    - print 함수는 반환 값이 없다
 
-- while 문
-
+  - sum()
+    - () 안에 왼쪽부터 오른쪽까지의 합계
+  - len()
+    - 객체의 길이를 반환
 
 
 
