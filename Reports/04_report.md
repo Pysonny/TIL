@@ -116,7 +116,7 @@
 
 ## 시퀀스형 컨테이너 ( Sequence Container )
 ---
-## 문자열 ( String Type )
+### 문자열 ( String Type )
 
 - 모든 문자는 str type
 - 문자열은 ' ' 나 " " 를 활용하여 표기

@@ -47,7 +47,7 @@ for num in nums:
     result += int(num)
 print(result)
 
----
+
 
 nums = ['1','2','3']
 new_nums =[]
@@ -56,14 +56,14 @@ for num in nums:
 print(new_nums)
 
 
----
+
 
 nums = ['1','2','3']
 new_nums = map(int,nums)
 print(new_nums)
 print(list(new_nums))
 
----
+
 
 a = input()
 print(a) # 2 5
@@ -78,13 +78,13 @@ d,e = list(c)
 print(d,e) 2, 5
 
 
-a = 
+a =
 print(a) # 2 5
 
-b = 
+b =
 print(b) # '2','5'
 
-c = 
+c =
 print(c) # map
 
 d,e = list(map (int,input().split()))
