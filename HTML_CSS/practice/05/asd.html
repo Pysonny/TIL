@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .card {
+            /* border: 2px solid red; */
+
+            display: inline-block;
+            /* width: 400px;
+            height: 400px; */
+        }
+        .img {
+            position: relative;
+            /* border: 2px solid blue; */
+        }
+
+        .img_flag {
+            position: absolute;
+            /* 부모 자식간에만 적용이 된다 */
+            right: 0;
+            width: 100px;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="card">
+        <!-- 부모 -->
+        <div class="img">
+            <img src="05_Flex_Advanced/01.jpg" alt="">
+            <!-- 자식 -->
+            <img class="img_flag" src="05_Flex_Advanced/02.png" alt="">
+        </div>
+        <div>
+            <p>asdasdsadadas</p>
+            <p>asdasdsadadas</p>
+            <p>asdasdsadadas</p>
+            <p>asdasdsadadas</p>
+        </div>
+    </div>
+</body>
+</html>
