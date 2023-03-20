@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document2</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div></div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  <script>
+    const body = document.querySelector('body');
+    body.classList = 'd-flex justify-content-center';
+
+    // 버튼 생성
+    let btnTag = document.createElement('button');
+    body.appendChild(btnTag);
+    btnTag.setAttribute('id', 'btn');
+    btnTag.textContent = '생성';
+
+    // 버튼 css
+    btnTag.classList = 'text-bg-primary p-3 border-0 rounded';
+
+    // 버튼 요소에 이벤트 핸들러를 부착
+    btnTag.addEventListener('click', (event) => {
+      // 당첨번호 / 보너스
+      let lottoNum = [11, 23, 25, 30, 32, 40];
+      let bonusNum = [42];
+
+      // 1부터 45까지의 값
+      const numbers = _.range(1, 46);
+
+      // 6개 번호 뽑기
+      let sixNumbers = _.sampleSize(numbers, 6);
+
+      // 당첨 개수
+      let cnt = 0;
+      // 보너스 당첨 판별
+      let bonusCnt = 0;
+
+      //   카운트
+      sixNumbers.forEach((num) => {
+        // 일반번호 맞았을때
+
+        if (lottoNum.includes(num)) {
+          cnt += 1;
+        }
+        // 보너스 번호 맞았을때
+        else if (bonusNum.includes(num)) {
+          bonusCnt += 1;
+        }
+      });
+
+      //    등수가리기
+      // 당첨번호 , 보너스 번호 , 랜덤번호 출력
+
+      sixNumbers = sixNumbers.join(',');
+      lottoNum = lottoNum.join(',');
+      let result = `당첨 번호 : ${lottoNum} 보너스 번호 : ${bonusNum} 랜덤 번호 : ${sixNumbers} 등수 : `;
+
+      if (cnt === 6) {
+        console.log(result + '1등');
+      } else if (cnt === 5 && bonusCnt === 1) {
+        console.log(result + '2등');
+      } else if (cnt === 5) {
+        console.log(result + '3등');
+      } else if (cnt === 4) {
+        console.log(result + '4등');
+      } else if (cnt === 3) {
+        console.log(result + '5등');
+      } else {
+        console.log(result + '꽝');
+      }
+    });
+  </script>
+</html>

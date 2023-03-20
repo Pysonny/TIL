@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .navbar {
+            display: flex;
+            height: 36px;
+            position: sticky;
+            top: 0;
+            justify-content: space-between;
+            /* 수직 정렬 */
+            align-items: center;
+            padding: 1rem;
+            margin-bottom: 3px solid black;
+        }
+
+        .navbar > img {
+            height: 100%;
+        }
+
+        .card {
+            background-color: lightblue;
+            border: 1px solid black;
+            display: black;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            /* 균등하게 분배 */
+            flex-grow: 1;
+            /* 아 이게 젤 중요함!!!!!!!!!!!  */
+            /* 기본적인 상자의 크기 */
+            flex-basis: 300px;
+
+        }
+        .container {
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <img src="05_Flex_Advanced/04.png" alt="#">
+        <div>hyper S23</div>
+    </nav>
+    <main class="container">
+        <div class="card">
+            <h2>제목</h2>
+            <img src="05_flex_advanced/03.png" alt="#">
+            <div>
+                ..
+            </div>
+        </div>
+        <div class="card">
+            <h2>제목</h2>
+            <img src="05_flex_advanced/03.png" alt="#">
+            <div>
+                ..
+            </div>
+        </div>
+        <div class="card">
+            <h2>제목</h2>
+            <img src="05_flex_advanced/03.png" alt="#">
+            <div>
+                ..
+            </div>
+        </div>
+    </main>
+        
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const person = {
+            name: 'sophia',
+            greetng:function() {
+                return `hello,${this.name}` // this 는 person을 가리킨다
+            },
+        }
+
+        // greeting 메서트 호출
+        console.log(person.greeting())
+
+        // this
+        // 단순 호출 시
+        const myFunc = function () {
+            return this // Window ( 최상위 객체 )
+        }
+
+        console.log(myFunc())
+
+
+        // 메서드호출 시
+        const myObj = {
+            data: 1,
+            myFunc: function () {
+                return this
+            }
+        }
+        console.log(myObj.myFunc())
+
+        // nested 함수에서의 this
+        const myObj2 = {
+            numbers: [1,2,3],
+
+            myFunc : function () {
+                this.numbers.forEach(function (number) { // this = myObj2
+                    console.log(number)
+                    console.log(this) //this = Window
+                })
+            }
+        }
+        console.log(myObj2.myFunc())
+
+        // 화살표 함수 사용
+        const myObj3 = {
+            numbers: [1,2,3],
+
+            myFunc : function () {
+                this.numbers.forEach((number) => { // this = myObj3
+                    console.log(number)
+                    console.log(this) //this = myObj3
+                })
+            }
+        }
+        console.log(myObj3.myFunc())
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      height: 500px;
+      border: 1px solid black;
+      /* flex의 시작 */
+      display: flex;
+      /* flex-direction: row;  행 */
+      /* flex-direction: column;  열 */
+      /* flex-direction: row-reverse; 우측정렬  */
+      /* flex-direction: column-reverse; 아래측 정렬  */
+
+      flex-direction: row;
+
+      /* flex-wrap: nowrap; 줄어드는 방향으로 크기만 줄어듦 */
+      /* flex-wrap: wrap; 줄어드는 방향 수직으로 잘리는 모형이 이동함 */
+
+      flex-wrap: wrap;
+     
+      /* 주축 정렬 */
+
+      /* justify-content: center; 중앙 정렬 */
+      /* justify-content: flex-end; 오른쪽 정렬 */
+      /* justify-content: flex-start; 왼쪽 정렬 */
+
+
+      /* 교차축 정렬 */
+      /* 행이 2개 이상이거나 wrap , wrap-reverse로 설정 될 때만 작동 */
+
+      /* align-content: center; */
+      /* align-content: flex-end; */
+      /* align-content: flex-start;  */
+
+
+      /* align-items: center; */
+      /* align-items: flex-end; */
+      /* align-items: flex-start; */
+
+    }
+
+
+
+    .post {
+      background-color: grey;
+      border: 1px solid black;
+      margin: 0.5rem;
+      padding: 0.5rem;
+    }
+
+    .item1 {
+      align-self: center;
+    }
+
+    .item2 {
+      align-self: flex-end;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="post item1">
+      <h2>Post Title 1</h2>
+      <p>Post Content 1</p>
+    </div>
+    <div class="post item2">
+      <h2>Post Title 2</h2>
+      <p>Post Content 2</p>
+    </div>
+    <div class="post">
+      <h2>Post Title 3</h2>
+      <p>Post Content 3</p>
+    </div>
+    <div class="post">
+      <h2>Post Title 4</h2>
+      <p>Post Content 4</p>
+    </div>
+  </div>
+
+</body>
+
+</html>

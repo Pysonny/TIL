@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <title>Document</title>
+  <style>
+    .newsletter--textbox--text{
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 5;
+      overflow: hidden;
+    }
+
+    .description {
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      font-size: 12px;
+    }
+
+    .material-symbols-outlined {    
+      font-size: 20px;
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 48
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .main_img {
+      border-radius: 5%;
+      width: 100%;
+      height: 100%;
+    }
+
+    .large-icon {
+      font-size: 30px;
+    }
+    
+    .button_size {
+      width: 150px;
+      height: 90px;
+    }
+    .fix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    body {
+      padding-top: 70px;
+    }
+    
+</style>
+</head>
+<body>
+  <header class="fix z-1 bg-white">
+    <!-- navbar -->
+    <nav class="navbar bg-body-white">
+      <div class="container-fluid ">
+        <a class="navbar-brand" href="https://www.airbnb.co.kr/">
+          <img src="logo.png" alt="Logo" height="24" class="d-inline-block align-text-top">
+        </a>
+        <div>
+          <div class="d-inline-flex p-2">
+            <div class="">
+              <a class="mx-2" href="https://www.airbnb.co.kr/host/homes?">호스팅 시작하기</a>
+              <a class="mx-2" href="https://www.airbnb.co.kr/signup_login">회원 가입</a>
+              <a class="mx-2" href="https://www.airbnb.co.kr/login">로그인</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <article >
+    <div class="card col-6 p-3 shadow p-3 mb-5 bg-body rounded">
+      <!-- 1 -->
+      <div>
+        <h1><b>한국의 휴가 임대 시설</b></h1>
+        <p class="text-muted">에어비앤비에서 독특한 숙소를 예약하세요.</p>
+      </div>
+
+        <div class="box mb-2">
+        <input type="text" class="form-control width" id="id" placeholder="한국">
+        </div>
+
+        <div class="box mb-2">
+        <div class="d-flex ">
+          <div class="col-6">
+            <small>체크인</small>
+          </div>
+          <div class="col-6">
+            <small>체크아웃</small>
+          </div>
+        </div>
+        <div class="input-group ">
+          <select class="form-select" id="inputGroupSelect01">
+            <option selected>날짜 입력</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="3">4</option>
+            <option value="3">5</option>
+            <option value="3">6</option>
+            <option value="3">7</option>
+            <option value="3">8</option>
+            <option value="3">9</option>
+            <option value="3">10</option>
+          </select>
+          <select class="form-select" id="inputGroupSelect02">
+            <option selected>날짜 입력</option>
+            <option value="3">1</option>
+            <option value="3">2</option>
+            <option value="3">3</option>
+            <option value="3">4</option>
+            <option value="3">5</option>
+            <option value="3">6</option>
+            <option value="3">7</option>
+            <option value="3">8</option>
+            <option value="3">9</option>
+            <option value="3">10</option>
+          </select>
+        </div>
+      </div>
+
+        <div class="d-flex ">
+          <div class="col-6">
+            <small>성인</small>
+          </div>
+          <div class="col-6">
+            <small>어린이</small>
+          </div>
+        </div>
+        <div class="input-group ">
+          <select class="form-select" id="inputGroupSelect01">
+            <option selected>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="3">4</option>
+            <option value="3">5</option>
+            <option value="3">6</option>
+            <option value="3">7</option>
+            <option value="3">8</option>
+            <option value="3">9</option>
+            <option value="3">10</option>
+          </select>
+          <select class="form-select" id="inputGroupSelect02">
+            <option selected>0</option>
+            <option value="3">1</option>
+            <option value="3">2</option>
+            <option value="3">3</option>
+            <option value="3">4</option>
+            <option value="3">5</option>
+            <option value="3">6</option>
+            <option value="3">7</option>
+            <option value="3">8</option>
+            <option value="3">9</option>
+            <option value="3">10</option>
+          </select>
+        </div>
+        <div class="d-grid gap-2 mt-3 ">
+          <a href="https://blog.naver.com/myboxteam" class="btn btn-danger btn-lg"><span class="material-symbols-outlined" >
+            search
+            </span>검색</a>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row ">
+          <div class="">
+            <h1>최고 평점을 받은 한국의 휴가 숙소</h1>
+            <p class="text-muted">위치, 청결도 등에서 게스트의 높은 평가를 받은 숙소입니다.</p>
+          </div>
+          <div class="col-4 col-md-4">
+            <div>
+              <img src="02.webp" class="img-fluid main_img" alt="">
+            </div>
+            <div class="d-flex justify-content-between">
+              <p><strong>전주시 완산구의 집</strong></p>
+              <p>★4.9(48)</p>
+            </div>
+            <p class="description text-muted">화응(花應)은 전주의 한 가운데, 완산구 태평동에 위치하고 있습니다.
+
+              태평동은 과거 최초의 전주역과 연초제조창이 있던 교통과 상권의 중심이었으며 상인들의 마을인 주택가 골목에 그 당시 풍수와 지리를 활용하여 1969년 15평으로 건축되었습니다.
+              
+              현재는 과거의 건축물들이 없어지고 아파트와 현대식 건물들이 세워지지만 화응(花應)은 그때 그 모습 그대로 사색을 위한 프라이빗 스테이로 디자인되었습니다.
+              
+              흙은 사라지고 아스팔트와 콘크리트 건물들 사이에 살아있는 화응(花應)을 아스팔트에 피어있는 꽃으로 비유하여 도심 속의 꽃 "화응(花應)" 이란 이름이 만들어졌습니다.
+              
+              화응을 관통하는 꽃을 형상화하기 위하여 과거 한국적 꽃 이미지를 형상화했던 자료들을 바탕으로 음과 양, 좌우 대칭되는 미 와 현대적 미를 놓치지 않으며 간결하고 명료하게 표현하였습니다.
+              
+              도심 속의 꽃, 그 꽃으로 응답합니다.</p>
+          </div>
+          <div class="col-4 col-md-4">
+            <div class="">
+              <img src="03.webp" class="img-fluid main_img" alt="">
+            </div>
+            <div class="d-flex justify-content-between">
+              <p><strong>전주시 완산구의 집</strong></p>
+              <p>★4.9(48)</p>
+            </div>
+            <p class="description text-muted">화응(花應)은 전주의 한 가운데, 완산구 태평동에 위치하고 있습니다.
+
+              태평동은 과거 최초의 전주역과 연초제조창이 있던 교통과 상권의 중심이었으며 상인들의 마을인 주택가 골목에 그 당시 풍수와 지리를 활용하여 1969년 15평으로 건축되었습니다.
+              
+              현재는 과거의 건축물들이 없어지고 아파트와 현대식 건물들이 세워지지만 화응(花應)은 그때 그 모습 그대로 사색을 위한 프라이빗 스테이로 디자인되었습니다.
+              
+              흙은 사라지고 아스팔트와 콘크리트 건물들 사이에 살아있는 화응(花應)을 아스팔트에 피어있는 꽃으로 비유하여 도심 속의 꽃 "화응(花應)" 이란 이름이 만들어졌습니다.
+              
+              화응을 관통하는 꽃을 형상화하기 위하여 과거 한국적 꽃 이미지를 형상화했던 자료들을 바탕으로 음과 양, 좌우 대칭되는 미 와 현대적 미를 놓치지 않으며 간결하고 명료하게 표현하였습니다.
+              
+              도심 속의 꽃, 그 꽃으로 응답합니다.</p>
+          </div>
+          <div class="col-4 col-md-4">
+            <div class="position-relative">
+              <img src="09.webp" class="img-fluid main_img" alt="">
+              <button type="button" class="btn bg-white btn-sm position-absolute top-0 start-0 z-3 m-2">슈퍼호스트</button>
+            </div>
+            <div class="d-flex justify-content-between">
+              <p><strong>전주시 완산구의 집</strong></p>
+              <p>★4.97 (514)</p>
+            </div>
+            <p class="description text-muted">화응(花應)은 전주의 한 가운데, 완산구 태평동에 위치하고 있습니다.
+
+              태평동은 과거 최초의 전주역과 연초제조창이 있던 교통과 상권의 중심이었으며 상인들의 마을인 주택가 골목에 그 당시 풍수와 지리를 활용하여 1969년 15평으로 건축되었습니다.
+              
+              현재는 과거의 건축물들이 없어지고 아파트와 현대식 건물들이 세워지지만 화응(花應)은 그때 그 모습 그대로 사색을 위한 프라이빗 스테이로 디자인되었습니다.
+              
+              흙은 사라지고 아스팔트와 콘크리트 건물들 사이에 살아있는 화응(花應)을 아스팔트에 피어있는 꽃으로 비유하여 도심 속의 꽃 "화응(花應)" 이란 이름이 만들어졌습니다.
+              
+              화응을 관통하는 꽃을 형상화하기 위하여 과거 한국적 꽃 이미지를 형상화했던 자료들을 바탕으로 음과 양, 좌우 대칭되는 미 와 현대적 미를 놓치지 않으며 간결하고 명료하게 표현하였습니다.
+              
+              도심 속의 꽃, 그 꽃으로 응답합니다.</p>
+          </div>
+        </div>
+      </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="h1">한국의 휴가용 임대 숙소의 인기 편의시설</div>
+        <div class="col">
+          <button type="button" class="btn btn-white text-start button_size shadow p-3 mb-5 bg-body rounded">
+          <span class="material-symbols-outlined large-icon">
+            restaurant
+          </span><br>
+          주방</button>
+        </div >
+        <div class="col">
+          <button type="button" class="btn btn-white text-start button_size shadow p-3 mb-5 bg-body rounded">
+          <span class="material-symbols-outlined large-icon">
+            wifi
+            </span><br>
+            무선 인터넷</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn btn-white text-start button_size shadow p-3 mb-5 bg-body rounded">
+          <span class="material-symbols-outlined large-icon">
+            pool
+            </span><br>
+            수영장</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn btn-white text-start button_size shadow p-3 mb-5 bg-body rounded">
+          <span class="material-symbols-outlined large-icon">
+            local_parking
+            </span><br>
+            건물 내 무료주차</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn btn-white btn-sm text-start button_size shadow p-3 mb-5 bg-body rounded">
+            <span class="material-symbols-outlined large-icon">
+              ac_unit
+              </span><br>
+          에어컨</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div>
+          <h1>한국의 다른 근사한 휴가 숙소</h1>
+        </div>
+          <div class="col-12 col-md-3 mb-3">
+            <div class="position-relative">
+              <img src="02.webp" class="img-fluid main_img" alt="">
+              <button type="button" class="btn bg-white btn-sm position-absolute top-0 start-0 z-3 m-2">슈퍼호스트</button>
+            </div>
+            <div class="d-flex justify-content-between mt-2">
+              <p><strong>전주시 완산구의 집</strong></p>
+              <p>★4.9(48)</p>
+            </div>
+            <p class="description text-muted">화응(花應)은 전주의 한 가운데, 완산구 태평동에 위치하고 있습니다.
+
+              태평동은 과거 최초의 전주역과 연초제조창이 있던 교통과 상권의 중심이었으며 상인들의 마을인 주택가 골목에 그 당시 풍수와 지리를 활용하여 1969년 15평으로 건축되었습니다.
+              
+              현재는 과거의 건축물들이 없어지고 아파트와 현대식 건물들이 세워지지만 화응(花應)은 그때 그 모습 그대로 사색을 위한 프라이빗 스테이로 디자인되었습니다.
+              
+              흙은 사라지고 아스팔트와 콘크리트 건물들 사이에 살아있는 화응(花應)을 아스팔트에 피어있는 꽃으로 비유하여 도심 속의 꽃 "화응(花應)" 이란 이름이 만들어졌습니다.
+              
+              화응을 관통하는 꽃을 형상화하기 위하여 과거 한국적 꽃 이미지를 형상화했던 자료들을 바탕으로 음과 양, 좌우 대칭되는 미 와 현대적 미를 놓치지 않으며 간결하고 명료하게 표현하였습니다.
+              
+              도심 속의 꽃, 그 꽃으로 응답합니다.</p>
+          </div>
+          <div class="col-12 col-md-3 mb-3">
+            <div class="position-relative">
+              <img src="03.webp" class="img-fluid main_img" alt="">
+              <button type="button" class="btn bg-white btn-sm position-absolute top-0 start-0 z-3 m-2">슈퍼호스트</button>
+
+            </div>
+            <div class="d-flex justify-content-between mt-2">
+              <p><strong>전주시 완산구의 집</strong></p>
+              <p>★4.9(48)</p>
+            </div>
+            <p class="description text-muted">화응(花應)은 전주의 한 가운데, 완산구 태평동에 위치하고 있습니다.
+
+              태평동은 과거 최초의 전주역과 연초제조창이 있던 교통과 상권의 중심이었으며 상인들의 마을인 주택가 골목에 그 당시 풍수와 지리를 활용하여 1969년 15평으로 건축되었습니다.
+              
+              현재는 과거의 건축물들이 없어지고 아파트와 현대식 건물들이 세워지지만 화응(花應)은 그때 그 모습 그대로 사색을 위한 프라이빗 스테이로 디자인되었습니다.
+              
+              흙은 사라지고 아스팔트와 콘크리트 건물들 사이에 살아있는 화응(花應)을 아스팔트에 피어있는 꽃으로 비유하여 도심 속의 꽃 "화응(花應)" 이란 이름이 만들어졌습니다.
+              4
+              화응을 관통하는 꽃을 형상화하기 위하여 과거 한국적 꽃 이미지를 형상화했던 자료들을 바탕으로 음과 양, 좌우 대칭되는 미 와 현대적 미를 놓치지 않으며 간결하고 명료하게 표현하였습니다.
+              
+              도심 속의 꽃, 그 꽃으로 응답합니다.</p>
+          </div>
+          <div class="col-12 col-md-3 mb-3">
+            <div class="position-relative">
+              <img src="08.webp" class="img-fluid main_img" alt="">
+              <button type="button" class="btn bg-white btn-sm position-absolute top-0 start-0 z-3 m-2">슈퍼호스트</button>
+
+            </div>
+            <div class="d-flex justify-content-between mt-2">
+              <p><strong>전주시 완산구의 집</strong></p>
+              <p>★4.9(48)</p>
+            </div>
+            <p class="description text-muted">화응(花應)은 전주의 한 가운데, 완산구 태평동에 위치하고 있습니다.
+
+              태평동은 과거 최초의 전주역과 연초제조창이 있던 교통과 상권의 중심이었으며 상인들의 마을인 주택가 골목에 그 당시 풍수와 지리를 활용하여 1969년 15평으로 건축되었습니다.
+              
+              현재는 과거의 건축물들이 없어지고 아파트와 현대식 건물들이 세워지지만 화응(花應)은 그때 그 모습 그대로 사색을 위한 프라이빗 스테이로 디자인되었습니다.
+              
+              흙은 사라지고 아스팔트와 콘크리트 건물들 사이에 살아있는 화응(花應)을 아스팔트에 피어있는 꽃으로 비유하여 도심 속의 꽃 "화응(花應)" 이란 이름이 만들어졌습니다.
+              
+              화응을 관통하는 꽃을 형상화하기 위하여 과거 한국적 꽃 이미지를 형상화했던 자료들을 바탕으로 음과 양, 좌우 대칭되는 미 와 현대적 미를 놓치지 않으며 간결하고 명료하게 표현하였습니다.
+              
+              도심 속의 꽃, 그 꽃으로 응답합니다.</p>
+          </div>
+          <div class="col-12 col-md-3 mb-3">
+            <div class="position-relative">
+              <img src="09.webp" class="img-fluid main_img" alt="">
+              <button type="button" class="btn bg-white btn-sm position-absolute top-0 start-0 z-3 m-2">슈퍼호스트</button>
+
+            </div>
+            <div class="d-flex justify-content-between mt-2">
+              <p><strong>전주시 완산구의 집</strong></p>
+              <p>★4.9(48)</p>
+            </div>
+            <p class="description text-muted">화응(花應)은 전주의 한 가운데, 완산구 태평동에 위치하고 있습니다.
+
+              태평동은 과거 최초의 전주역과 연초제조창이 있던 교통과 상권의 중심이었으며 상인들의 마을인 주택가 골목에 그 당시 풍수와 지리를 활용하여 1969년 15평으로 건축되었습니다.
+              
+              현재는 과거의 건축물들이 없어지고 아파트와 현대식 건물들이 세워지지만 화응(花應)은 그때 그 모습 그대로 사색을 위한 프라이빗 스테이로 디자인되었습니다.
+              
+              흙은 사라지고 아스팔트와 콘크리트 건물들 사이에 살아있는 화응(花應)을 아스팔트에 피어있는 꽃으로 비유하여 도심 속의 꽃 "화응(花應)" 이란 이름이 만들어졌습니다.
+              
+              화응을 관통하는 꽃을 형상화하기 위하여 과거 한국적 꽃 이미지를 형상화했던 자료들을 바탕으로 음과 양, 좌우 대칭되는 미 와 현대적 미를 놓치지 않으며 간결하고 명료하게 표현하였습니다.
+              
+              도심 속의 꽃, 그 꽃으로 응답합니다.</p>
+          </div>
+          <div class="col-12 col-md-3 mb-3">
+            <div class="position-relative">
+              <img src="02.webp" class="img-fluid main_img" alt="">
+              <button type="button" class="btn bg-white btn-sm position-absolute top-0 start-0 z-3 m-2">슈퍼호스트</button>
+
+            </div>
+            <div class="d-flex justify-content-between mt-2">
+              <p><strong>전주시 완산구의 집</strong></p>
+              <p>★4.9(48)</p>
+            </div>
+            <p class="description text-muted">화응(花應)은 전주의 한 가운데, 완산구 태평동에 위치하고 있습니다.
+
+              태평동은 과거 최초의 전주역과 연초제조창이 있던 교통과 상권의 중심이었으며 상인들의 마을인 주택가 골목에 그 당시 풍수와 지리를 활용하여 1969년 15평으로 건축되었습니다.
+              
+              현재는 과거의 건축물들이 없어지고 아파트와 현대식 건물들이 세워지지만 화응(花應)은 그때 그 모습 그대로 사색을 위한 프라이빗 스테이로 디자인되었습니다.
+              
+              흙은 사라지고 아스팔트와 콘크리트 건물들 사이에 살아있는 화응(花應)을 아스팔트에 피어있는 꽃으로 비유하여 도심 속의 꽃 "화응(花應)" 이란 이름이 만들어졌습니다.
+              
+              화응을 관통하는 꽃을 형상화하기 위하여 과거 한국적 꽃 이미지를 형상화했던 자료들을 바탕으로 음과 양, 좌우 대칭되는 미 와 현대적 미를 놓치지 않으며 간결하고 명료하게 표현하였습니다.
+              
+              도심 속의 꽃, 그 꽃으로 응답합니다.</p>
+          </div>
+          <div class="col-12 col-md-3 mb-3">
+            <div class="position-relative">
+              <img src="03.webp" class="img-fluid main_img" alt="">
+              <button type="button" class="btn bg-white btn-sm position-absolute top-0 start-0 z-3 m-2">슈퍼호스트</button>
+
+            </div>
+            <div class="d-flex justify-content-between mt-2">
+              <p><strong>전주시 완산구의 집</strong></p>
+              <p>★4.9(48)</p>
+            </div>
+            <p class="description text-muted">화응(花應)은 전주의 한 가운데, 완산구 태평동에 위치하고 있습니다.
+
+              태평동은 과거 최초의 전주역과 연초제조창이 있던 교통과 상권의 중심이었으며 상인들의 마을인 주택가 골목에 그 당시 풍수와 지리를 활용하여 1969년 15평으로 건축되었습니다.
+              
+              현재는 과거의 건축물들이 없어지고 아파트와 현대식 건물들이 세워지지만 화응(花應)은 그때 그 모습 그대로 사색을 위한 프라이빗 스테이로 디자인되었습니다.
+              
+              흙은 사라지고 아스팔트와 콘크리트 건물들 사이에 살아있는 화응(花應)을 아스팔트에 피어있는 꽃으로 비유하여 도심 속의 꽃 "화응(花應)" 이란 이름이 만들어졌습니다.
+              
+              화응을 관통하는 꽃을 형상화하기 위하여 과거 한국적 꽃 이미지를 형상화했던 자료들을 바탕으로 음과 양, 좌우 대칭되는 미 와 현대적 미를 놓치지 않으며 간결하고 명료하게 표현하였습니다.
+              
+              도심 속의 꽃, 그 꽃으로 응답합니다.</p>
+          </div>
+          <div class="col-12 col-md-3 mb-3">
+            <div class="position-relative">
+              <img src="09.webp" class="img-fluid main_img" alt="">
+              <button type="button" class="btn bg-white btn-sm position-absolute top-0 start-0 z-3 m-2">슈퍼호스트</button>
+
+            </div>
+            <div class="d-flex justify-content-between mt-2">
+              <p><strong>전주시 완산구의 집</strong></p>
+              <p>★4.9(48)</p>
+            </div>
+            <p class="description text-muted">화응(花應)은 전주의 한 가운데, 완산구 태평동에 위치하고 있습니다.
+
+              태평동은 과거 최초의 전주역과 연초제조창이 있던 교통과 상권의 중심이었으며 상인들의 마을인 주택가 골목에 그 당시 풍수와 지리를 활용하여 1969년 15평으로 건축되었습니다.
+              
+              현재는 과거의 건축물들이 없어지고 아파트와 현대식 건물들이 세워지지만 화응(花應)은 그때 그 모습 그대로 사색을 위한 프라이빗 스테이로 디자인되었습니다.
+              
+              흙은 사라지고 아스팔트와 콘크리트 건물들 사이에 살아있는 화응(花應)을 아스팔트에 피어있는 꽃으로 비유하여 도심 속의 꽃 "화응(花應)" 이란 이름이 만들어졌습니다.
+              
+              화응을 관통하는 꽃을 형상화하기 위하여 과거 한국적 꽃 이미지를 형상화했던 자료들을 바탕으로 음과 양, 좌우 대칭되는 미 와 현대적 미를 놓치지 않으며 간결하고 명료하게 표현하였습니다.
+              
+              도심 속의 꽃, 그 꽃으로 응답합니다.</p>
+          </div>
+          <div class="col-12 col-md-3 mb-3">
+            <div class="position-relative">
+              <img src="08.webp" class="img-fluid main_img" alt="">
+              <button type="button" class="btn bg-white btn-sm position-absolute top-0 start-0 z-3 m-2">슈퍼호스트</button>
+
+            </div>
+            <div class="d-flex justify-content-between mt-2">
+              <p><strong>전주시 완산구의 집</strong></p>
+              <p>★4.9(48)</p>
+            </div>
+            <p class="description text-muted">화응(花應)은 전주의 한 가운데, 완산구 태평동에 위치하고 있습니다.
+
+              태평동은 과거 최초의 전주역과 연초제조창이 있던 교통과 상권의 중심이었으며 상인들의 마을인 주택가 골목에 그 당시 풍수와 지리를 활용하여 1969년 15평으로 건축되었습니다.
+              
+              현재는 과거의 건축물들이 없어지고 아파트와 현대식 건물들이 세워지지만 화응(花應)은 그때 그 모습 그대로 사색을 위한 프라이빗 스테이로 디자인되었습니다.
+              
+              흙은 사라지고 아스팔트와 콘크리트 건물들 사이에 살아있는 화응(花應)을 아스팔트에 피어있는 꽃으로 비유하여 도심 속의 꽃 "화응(花應)" 이란 이름이 만들어졌습니다.
+              
+              화응을 관통하는 꽃을 형상화하기 위하여 과거 한국적 꽃 이미지를 형상화했던 자료들을 바탕으로 음과 양, 좌우 대칭되는 미 와 현대적 미를 놓치지 않으며 간결하고 명료하게 표현하였습니다.
+              
+              도심 속의 꽃, 그 꽃으로 응답합니다.</p>
+          </div>
+        </div>
+      </div>
+  </article>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>
+
+<a href="https://getbootstrap.com/docs/5.3/components/card/#kitchen-sink" type="button" class="btn btn-secondary btn-sm position-absolute top-0 start-0 m-2">Source</a>

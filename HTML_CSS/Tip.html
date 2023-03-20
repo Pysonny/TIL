@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .h1 {
+            /* 텍스트 색 */
+            color: blue;
+            /* 텍스트 크기 */
+            font-size: 15px;
+            /* 백그라운드 색 */
+            background-color: white;
+        }
+
+        .h2 {
+            /* 무조건 레드먼저! */
+            color: red !important;
+            
+        }
+
+        .box1 {
+            /* 보더까지의 사이즈를 지정해줌 */
+            box-sizing: border-box;
+            /* 콘텐츠의 크기만 지정해줌 */
+            box-sizing: content-box;
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+        }
+        .box2 {
+            /* 네방향 다 */
+            padding: 25px;
+            /* 상하 / 좌우  */
+            padding: 25px 25px;
+            /* 상 / 좌우 / 하 */
+            padding: 10px 20px 30px;
+            /* 상 우 하 좌 */
+            padding: 10px 20px 30px 40px;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-top: 10%;
+            padding-bottom: 30%;
+        }
+
+        .box3 {
+            margin: 30px;
+            margin: 25px 25px;
+            margin-top: 5px;
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .box-type {
+            display: block;
+            /* 항상 새로운 행으로 나뉨 */
+            /* width와 height속성을 사용하여 너비와 높이 지정 ㅇ  */
+            /* h1~6 , p , div 에 사용 */
+        }
+
+        .box-type {
+            display: inline;
+            /* 새로운 행으로 안나뉨 */
+            /* width,height속성 사용 x */
+            /* a,img,span에 사용 */
+        }
+        .box-type {
+            display: inline-block;
+            /* 요소가 줄 바꿈 안되고 너비 높이 지정 가능 */
+            /* 패딩 , 여백 및 테두리로 인해 다른 요소가 상자에서 밀려남 */   
+        }
+
+        .container {
+            position: static;
+            position: relative;
+            position: absolute;
+            position: fixed;
+            transform: translate(-50%,50%);
+        }
+        .index1 {
+            z-index: 2;
+            /* 정수 값을 사용해 z축 순서 지정 */
+            /* 더 큰 값을 가진 요소가 작은 값의 요소를 덮음 */
+        }
+        .index2 {
+            z-index: 1;
+        }
+        .flex {
+            display: flex;
+        }
+        .flex-direction {
+            /* 행 */
+            flex-direction: row;
+            /* 열 */
+            flex-direction: column;
+            
+        }
+
+
+
+
+
+
+
+        /* ol안에있는 모든 li */
+        ol > li {
+
+        }
+    </style>
+</head>
+<body>
+    <p class="box"></p>
+
+    <strong></strong>
+    <em></em>
+    <span></span>
+    
+    <h1></h1>
+    <h2></h2>
+    <h3></h3>
+    <h4></h4>
+    <h5></h5>
+    <h6></h6>
+
+    <ol>
+        <li></li>
+        <li></li>
+    </ol>
+    <ul>
+        <div></div>
+        <div></div>
+    </ul>
+    <!-- 외부 스타일 시트 적용 -->
+    <link rel="stylesheet" href="style.css">
+    <a href="link">link name</a>
+    <img src="img position" alt="img name">
+
+    <div class="relative">
+        <div class="absolute"></div>
+    </div>
+</body>
+</html>
+
