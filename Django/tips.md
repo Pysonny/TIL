@@ -63,6 +63,7 @@
 
 
 
+
 <!-- https://www.notion.so/hg-edu/Django-4755b2b2fe6f4292959e9940f37f59b2?pvs=4
 
 https://www.notion.so/hg-edu/Python-8a38c543b50a4eb7a796cbe9a2358e86?pvs=4
@@ -70,7 +71,7 @@ https://www.notion.so/hg-edu/Python-8a38c543b50a4eb7a796cbe9a2358e86?pvs=4
 https://www.notion.so/hg-edu/Python-8f920eeebb99493fade86371c290ef19?pvs=4
 
 https://www.notion.so/hg-edu/django-shell_plus-81da033a453842c2b816c7987cb16ad8?pvs=4
-
+1
 
 1. python -m venv venv
 2. source venv/bin/activate
@@ -81,4 +82,5 @@ https://www.notion.so/hg-edu/django-shell_plus-81da033a453842c2b816c7987cb16ad8?
 7. django-admin startproject firstpjt.
 
 python manage.py runserver
+
  -->
