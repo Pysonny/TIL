@@ -1,0 +1,11 @@
+{% extends 'articles/base.html' %}
+
+{% block content %}
+    {% comment %} 데이터 출력 {% endcomment %}
+    <h1>Throw</h1>
+    <form action="/catch/" method="GET">
+        <input type="text" name="message">
+        <input type="submit">
+    </form>
+{% endblock content %}
+

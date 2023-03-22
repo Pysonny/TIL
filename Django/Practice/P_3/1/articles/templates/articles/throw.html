@@ -1,0 +1,12 @@
+{% extends 'articles/base.html' %}
+
+{% block content %}
+<div class="p-5">
+    <form action="/catch/" method="GET">
+        <input type="text" class=""  name="message" aria-describedby="button-addon2">
+        <button class="btn btn-outline-primary" id="button-addon2" type="submit">Throw</button>
+    </form>
+</div>
+
+
+{% endblock content %}

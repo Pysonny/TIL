@@ -1,0 +1,12 @@
+{% extends 'articles/base.html' %}
+{% block content %}
+<div class="p-5">
+    {% for list in lotto_numbers  %}
+        <li>{{ list }}</li>
+    {% endfor %}
+
+</div>
+{% comment %} 뒤로가기 {% endcomment %}
+<a href="/lotto-create/">뒤로가기</a>
+
+{% endblock content %}

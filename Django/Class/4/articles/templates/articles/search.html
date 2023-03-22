@@ -1,0 +1,14 @@
+{% extends 'articles/base.html' %}
+
+{% block content %}
+    <h1>Form 실습</h1>
+    {% comment %} action = 어디로? {% endcomment %}
+    <form action="https://search.naver.com/search.naver" method="GET">
+        {% comment %} GET : 조회 / POST : 노출 x (id,pw 같은) {% endcomment %}
+        {% comment %} <input type="checkbox"> {% endcomment %}
+        <label for="message">검색어 : </label>
+        <input type="text" name="query" id="message">
+        <input type="submit">
+    </form>
+{% endblock content %}
+

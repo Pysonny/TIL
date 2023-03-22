@@ -1,0 +1,12 @@
+{% extends 'articles/base.html' %}
+
+{% block content%}
+<div class="container mt-5 col-5 justify-content-center align-items-center">
+    <form action="/lotto/" method="GET">
+        <div class="d-flex gap-3">
+            <input type="number" name="number" value=""  class="form-control" placeholder="로또 생성 수 " min = "0" max = "10" >
+            <button class="btn btn-outline-primary text-nowrap" type="submit" id="number" onclick="throw()">생성</button>
+        </div>
+    </form>
+</div>
+{% endblock content%}
