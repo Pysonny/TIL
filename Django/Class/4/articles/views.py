@@ -1,32 +1,20 @@
 from django.shortcuts import render
 
 # Create your views here.
-
 def index(request):
+    return render(request, 'articles/index.html')
+
+
+def detail(request, num): # url 에서 정한 변수명이 request, ??? 와 동일해야함
     context = {
-        'name':'Willson',
+        'num' : num,
     }
-    return render(request, 'articles/index.html', context) # 모든 템플릿은 templates 안에 있어야만 한다!
+    return render(request, 'articles/detail.html', context)
 
-def dinner(request):
-    foods = ['rice','noodle','hamburger']
+
+
+def greeting(request, name): # url 에서 정한 변수명이 request, ??? 와 동일해야함
     context = {
-        'foods' : foods,
+        'name' : name,
     }
-    return render(request, 'articles/dinner.html', context)
-
-
-def search(request):
-    return render(request, 'articles/search.html')
-
-def throw(request):
-    return render(request, 'articles/throw.html')
-
-def catch(request):
-
-    data = request.GET.get('message')
-
-    context = {
-        'data': data,
-    }
-    return render(request, 'articles/catch.html', context)
+    return render(request, 'articles/greeting.html', context)

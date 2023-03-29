@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form class="container d-flex col-5 " action="" method="GET">
+        <input class="form-control" type="text" name="message">
+        <input type="submit">
+    </form>
+    {% for num in lists %}
+        
+    {% endfor %}
+    <div class="container row p-5 ">
+        <a href="{% url 'number_print' 1 %}">1</a>
+        <a href="{% url 'number_print' 2 %}">2</a>
+        <a href="{% url 'number_print' 3 %}">3</a>
+        <a href="{% url 'number_print' 99999 %}">99999</a>
+    </div>
+
+    <script>
+        
+    </script>
+{% endblock content %}

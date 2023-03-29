@@ -103,6 +103,127 @@ urls
 
 
 
+## MODEL 
+
+1. 작성
+> articles > mmodels.py
+``` py
+class Article(models.Model):
+    # 필드이름 = 데이터 타입(제약조건)
+    title = models.CharField(max_length=10) # 길이제한 O
+    content = models.TextField() # 길이제한 X
+``` 
+
+2. migration 생성
+> 터미널
+``` python manage.py makemigrations ```   
+
+
+
+3. 전달
+> 터미널 
+``` python manage.py migrate ```
+
+
+## ADMIN
+
+1. 계정 생성
+> 터미널
+``` python manage.py createsupersuer ```
+- admin
+- `Enter`
+- password
+- repassword
+
+
+> 확인용
+`python manage.py showmigrations `
+
+> 설계도 번역본 확인 
+` python manage.py sqlmigrate articles 0001 `
+
+
+> 초기화
+- 만든 파일 다 삭제하면 됨
+
+
+## QuerySet API 
+> 터미널
+``` pip install ipython django-extensions ```
+
+> settings.py > INSTALLED_APP 
+- ` 'django_extensions', ` 입력
+
+- 업데이트 
+``` pip freeze > requirements.txt ```
+ 
+> 터미널 
+``` python3 manage.py shell_plus ```
+
+` article = Article() `
+
+` article.title = 'title' ` title에 값 할당
+
+` article.content = 'django!' ` content에 값 할당
+
+` article.save() ` 저장하기
+
+` Article.objects.all() ` 저장되었나 확인하기
+
+- db가서 확인하기 
+
+
+<!-- 한번에 쓰기 -->
+` article = Article(title='second', content='django!') `
+
+articles에 넣기
+` articles = Article.objects.all() `
+
+
+<!-- 다른 방법 -->
+` Article.objects.create(title='third', content='django!') `
+
+
+
+단일 데이터 조회
+
+` article = Article.objects.get(pk=1) `
+
+` Article.objects.filter(content='django!') `
+
+특정 단어로 시작하는 것 조회
+
+` Article.objects.filter(content__startswith='dj') `
+
+특정 단어가 들어가는 것 조회
+
+` Article.objects.filter(content__contains='!') `
+
+지정한 숫자보다 높은 것 조회
+
+` Article.onjects.filter(pk__gte=3)
+
+
+
+반복문
+```py 
+for article in articles:
+   print(article)
+   print(article.id) id 조회 pk로 쳐도 조회 가능
+```
+
+
+
+
+
+
+## 추가경로
+
+settings.py => TEMPLATES
+'DIRS" : [기본 템플릿 경로 외에 추가 경로를 작성],
+ex[ BASE_DIR / 'my_templates']
+
+
 
 
 <!-- https://www.notion.so/hg-edu/Django-4755b2b2fe6f4292959e9940f37f59b2?pvs=4

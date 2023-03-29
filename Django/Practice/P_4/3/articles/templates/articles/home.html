@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="p-5 row">
+    <a href="{% url 'calculate' 2 1%}">2 1</a>
+    <a href="{% url 'calculate' 4 9%}">4 9</a>
+    <a href="{% url 'calculate' 2 10%}">2 10</a>
+    <a href="{% url 'calculate' 7 3%}">7 3</a>
+</div>
+
+{% endblock content %}

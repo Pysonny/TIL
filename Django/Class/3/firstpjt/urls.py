@@ -15,11 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-# urls.py 입장에서는 articles 라는 패키지에서
-# views라는 모듈을 가져와야 함
 from articles import views
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('articles/', views.index),
+    path('dinner/',views.dinner),
+    path('search/', views.search),
+    path('throw/' , views.throw),
+    path('catch/' , views.catch)
+
 ]
