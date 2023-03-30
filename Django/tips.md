@@ -156,7 +156,17 @@ class Article(models.Model):
 
 - 업데이트 
 ``` pip freeze > requirements.txt ```
- 
+
+
+안될떄
+
+<!-- 일단 pip list 명령 대신에 python -m pip list 명령을 실행해보시고, 그 결과를 비교해보시겠어요?
+
+그리고 라이브러리 설치도 python -m pip install django-extensions 명령으로 설치하신 후에 manage.py 명령을 수행해보시겠어요? -->
+
+python3 manage.py shell_plus
+--ipython 이거 치고
+아래꺼 치기
 > 터미널 
 ``` python3 manage.py shell_plus ```
 
@@ -203,7 +213,18 @@ articles에 넣기
 
 ` Article.onjects.filter(pk__gte=3)
 
+- 수정
 
+article = Article.objects.get(pk=1)
+
+article.content = '수정할 내용
+
+article.save()
+
+
+- 삭제
+
+article.delete()
 
 반복문
 ```py 
@@ -212,6 +233,11 @@ for article in articles:
    print(article.id) id 조회 pk로 쳐도 조회 가능
 ```
 
+전체 조회
+
+단일객체 조회
+
+- 생성
 
 
 
