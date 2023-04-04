@@ -147,6 +147,66 @@ class Article(models.Model):
 - 만든 파일 다 삭제하면 됨
 
 
+
+## 초기설정
+- APP에 urls.py 추가하기
+``` py
+from django.urls import path
+from . import views
+
+app_name = 'todos'
+urlpatterns = [
+   path('', views.index, name='index') ,
+]
+```
+- 기존 Projects에 urls.py 에 연결하기
+
+```py
+from django.urls import path, include
+
+urlpatterns = [
+   path('todos/', include('todos.urls')),
+]
+```
+
+- views.py
+```py
+from .models import Todo
+
+def index(request):
+    todos = Todo.objects.all()
+    context = {
+        'todos' : todos , 
+    }
+    return render(request, 'todos/index.html', context)
+
+```
+- templates/todos 에 index.html 생성
+
+### 조회
+
+- views.py
+```
+from .models import Todo
+
+def index(request):
+   todo = Todo.objects.all()
+   context = {
+      'todos' : todos,
+   }
+   return render(request, 'todos/index.html', context)
+
+```
+
+- index.html
+{% for article in articles %}
+       <p>article : {{ article }} </p>
+       <p>글 번호 :
+            <a href="{% url 'articles:detail' article.pk %}">{{ article.pk }}</a>
+        </p> 
+       <p>article.content : {{ article.content}} </p> 
+    {% endfor %}
+
 ## QuerySet API 
 > 터미널
 ``` pip install ipython django-extensions ```
@@ -240,6 +300,358 @@ for article in articles:
 - 생성
 
 
+## FORM
+
+- articles 앱에 forms.py 파일 생성
+```py
+form django import forms
+
+class ArticleForm(forms.Form):
+   title = forms.CharField(max_length=10)
+   content = forms.CharField()
+```
+
+- form class 를 적용한 new 로직
+
+```py
+form .forms import ArticleForm
+
+def new(request):
+   form = ArticleForm()
+   context = {
+      'form' : form,
+   }
+   return render(request, 'articles/new.html', context)
+```
+
+- articles/new.html 에 form 적용
+
+```pyㅣ멱ㄷ
+{{ form }}
+
+```
+- p tag 적용한 form
+
+```
+{{ form.as_p }}
+```
+
+- 속성을 바꾸고 싶을 때
+articles/forms.py
+
+```
+
+content = forms.CharField(widget=forms.Textarea)
+
+```
+
+
+## ModelForm ( DB에 저장 )
+
+- ModelForm class 선언
+
+articles/forms.py
+```py
+from django import forms
+from .models import Article
+
+class ArticleForm(forms.ModelForm):
+   class Meta:
+      model = Article
+      fields = '__all__' ( 여기에 원하는 요소 넣을 수 있음)
+      (ex_1)
+      fields = ('title',) > title 만 나옴
+      (ex_2)
+      fields = ('title','content',)
+      
+      exclude = ('title',) > title 만 제외시킬수 있음
+```
+
+
+- ModelForm create 로직
+
+articles/views.py
+```py
+from .forms import ArticleForm
+
+def create(request):
+   form = ArticleForm(request.POST)
+   # 통과 했을 때
+   if form.is_valid():
+      article = form.save()
+      return redirect('articles:detail', article.pk)
+   # 통과하지 못했을 때
+   context = {
+      'form' : form,
+   }
+   return render(request, 'articles/new.html', context)
+```
+
+- edit 의 value 정해주기
+
+articles/views
+```py
+def edit(request, pk):
+   article = Article.objects.get(pk=pk)
+   form = ArticleForm(instance=article)
+   context = {
+      'article': article,
+      'form': form,
+   }
+   return render(request, 'articles/edit.html', context)
+
+```
+
+
+```py
+
+def update(request,pk):
+    article = Article.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = ArticleForm(request.POST, instance=article)
+        if form.is_valid():
+            form.save()
+            return redirect('articles:detail', article.pk)
+    else:
+        form = ArticleForm(instance=article)
+    context = {
+        'article': article,
+        'form': form,
+    }
+    return render(request, 'articles/update.html', context)
+
+```
+
+
+- SAVE
+articles/forms.py
+```py
+class ArticleForm(forms.ModelForm):
+    title = forms.CharField(
+        label='제목',
+        widget=forms.TextInput(
+            attrs={
+                'class': 'my-title',
+                'placeholder': '제목을 입력해주세요.'
+            }
+        )
+    )
+```
+
+
+- NEW , CREATE 병합
+articles/views.py
+```py
+def create(request):
+    # HTTP requests method가 POST라면
+    if request.method == 'POST':
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            article = form.save()
+            return redirect('articles:detail', article.pk)
+    # POST가 아니라면
+    else:
+        form = ArticleForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'articles/new.html', context)
+```
+
+불필요해진 new url 제거
+
+articles/views.py
+```py
+   path('new/') 삭제
+```
+
+코드 수정
+articles/index.html
+```html
+<a href="{% url 'articles:create' %}">CREATE</a>
+```
+articles/create.html
+```html
+<h1>CREATE</h1>
+<form action="{% url 'articles:create' %}" method="POST">
+{% csrf_token %}
+{{ form.as_p}}
+</form>
+```
+
+articles/views.py
+```py
+def create(request):
+   ...
+   ...
+   return render(request, 'articles/create.html', context)
+```
+
+결론 = create + new = create
+      update + edit = update
+
+
+
+## Cookie & Sessions
+
+- 생성
+
+accounts/urls.py
+```py
+from django.urls import path
+from . import views
+
+app_name = 'accounts'
+urlpatterns = [
+
+]
+```
+
+crud/urls.py
+``` py
+urlpatterns = [
+   ...,
+   path('accounts/', include('accounts.urls')),
+]
+```
+
+accounts/models.py  
+```py
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+   pass
+
+```
+
+settings.py
+```py
+
+AUTH_USER_MODEL = 'accounts.User' # 기본 값 'auth.User'
+```
+
+accounts/admin.py
+```py
+from django.contrib.auth.admin import UserAdmin
+from .models import User
+
+admin.site.register(User, UserAdmin)
+```
+> 주의
+프로젝트 중간에 AUTH_USER_MODEL을 변경 할 수 없음
+
+- 데이터베이스 초기화
+1. articles/migtations/ 번호붙은 친구들 삭제
+2. 데이터베이스 삭제 (db.sqlite3)
+
+다시 생성
+python manage.py makemigrations
+python manage.py migrate
+
+
+## LOGIN
+<Cookie,Sessions 와 이어서 진행>
+
+accounts/urls.py
+```py
+from django.urls import path
+from . import views
+
+app_name = 'accounts'
+urlpatterns = [
+   path('login/', views.login, name='login'),
+]
+```
+
+accounts/views.py
+```py
+from django.contrib.auth.forms import AuthenticationForm
+
+def login(request):
+   if request.method == 'POST':
+      pass
+   else:
+      form = AuthenticationForm()
+   context = {
+      'form' : form,
+   }
+   return render(request, 'accounts/login.html', context )
+```
+
+templates/accounts/login.html
+```html
+  <h1>로그인</h1>
+  <form action="{% url 'accounts:login' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">
+  </form>
+```
+
+accounts/views.py
+```py
+from django.contrib.auth import login as auth_login
+
+def login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, request.POST)
+        if form.is_valid():
+            auth_login(request, form.get_user())
+            return redirect('articles:index')
+    else:
+        form = AuthenticationForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'accounts/login.html', context)
+```
+
+articles/index.html
+```html
+  <a href="{% url 'accounts:login' %}">Login</a>
+```
+
+
+## LOGOUT
+accounts/urls.py
+```py
+    path('logout/', views.logout, name='logout'),
+```
+
+accounts/views.py
+```py
+from django.contrib.auth import logout as auth_logout
+
+def logout(request):
+    auth_logout(request)
+    return redirect('articles:index')
+```
+
+articles/index.html
+```html
+  <form action="{% url 'accounts:logout' %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Logout">
+  </form>
+```
+
+- 로그인 유저 정보 출력
+
+articles/index.html
+```html
+  <h3>안녕하세요, {{ user }} 님!</h3>
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -248,6 +660,37 @@ for article in articles:
 settings.py => TEMPLATES
 'DIRS" : [기본 템플릿 경로 외에 추가 경로를 작성],
 ex[ BASE_DIR / 'my_templates']
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
