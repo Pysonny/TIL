@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% comment %} <h1>Article</h1>
+    <h3>Hi, {{ user }}</h3>
+    <a href="{% url 'accounts:login' %}">Login</a>
+    <form action="{% url 'accounts:logout' %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Logout">
+      </form>
+      <form action="{% url 'accounts:delete' %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="회원탈퇴">
+      </form>
+      <form action="{% url 'accounts:signup' %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="회원가입">
+      </form>
+      <form action="{% url 'accounts:change_password' %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="비밀번호 변경">
+      </form> {% endcomment %}
+      {% if request.user.is_authenticated %}
+      <h3>안녕하세요, {{ user }} 님!</h3>
+      <form action="{% url 'accounts:logout' %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Logout">
+      </form>
+      <a href="{% url 'accounts:update' %}">회원정보수정</a>
+      <a href="{% url 'accounts:change_password' %}">비밀번호 변경</a>
+
+      <form action="{% url 'accounts:delete' %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="회원탈퇴">
+      </form>
+      <div>username : {{ user }}</div>
+      <div>email : {{ user.email }}</div>
+      <div>first_name : {{ user.first_name }}</div>
+      <div>last_name : {{ user.last_name }}</div>
+    {% else %}
+    <div>
+        <a href="{% url 'accounts:login' %}">Login</a>
+    </div>
+    <div>
+        <a href="{% url 'accounts:signup' %}">Signup</a>
+    </div>
+    {% endif %}
+</body>
+</html>

@@ -106,7 +106,7 @@ urls
 ## MODEL 
 
 1. 작성
-> articles > mmodels.py
+> articles > models.py
 ``` py
 class Article(models.Model):
     # 필드이름 = 데이터 타입(제약조건)
@@ -304,7 +304,7 @@ for article in articles:
 
 - articles 앱에 forms.py 파일 생성
 ```py
-form django import forms
+from django import forms
 
 class ArticleForm(forms.Form):
    title = forms.CharField(max_length=10)
@@ -569,13 +569,17 @@ from django.contrib.auth.forms import AuthenticationForm
 
 def login(request):
    if request.method == 'POST':
-      pass
+      form = AuthenticationForm(request, request.POST)
+      if form.is_valid():
+         auth_login(request, form.get_user())
+         return redirect('articles:index')
+
    else:
       form = AuthenticationForm()
    context = {
       'form' : form,
    }
-   return render(request, 'accounts/login.html', context )
+   return render(request, 'accounts/login.html', context)
 ```
 
 templates/accounts/login.html
@@ -586,24 +590,6 @@ templates/accounts/login.html
     {{ form.as_p }}
     <input type="submit">
   </form>
-```
-
-accounts/views.py
-```py
-from django.contrib.auth import login as auth_login
-
-def login(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request, request.POST)
-        if form.is_valid():
-            auth_login(request, form.get_user())
-            return redirect('articles:index')
-    else:
-        form = AuthenticationForm()
-    context = {
-        'form': form,
-    }
-    return render(request, 'accounts/login.html', context)
 ```
 
 articles/index.html
@@ -643,8 +629,334 @@ articles/index.html
 ```
 
 
+## 회원가입
+
+accounts/urls.py
+```py
+   path('login/', views.login, name='login'),
+   path('logout/', views.login, name='logout'),
+   path('signup/', views.signup, name='signup'),
+
+```
+
+accounts/forms.py 생성
+```py
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import get_user_model
+
+class CustomUserCreationForm(UserCreationForm):
+   class Meta(UserCreationForm.Meta):
+      model = get_user_model()
+
+```
+
+accounts/views.py
+```py
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from .forms import CustomUserCreationForm 
+
+def signup(request):
+   if request.method == 'POST':
+      form = CustomUserCreationForm(request.POST)
+      if form.is_valid():
+         form.save()
+         # 만약 회원가입 후 로그인까지 진행하려면
+         user = form.save()
+         auth_login(request, user)
+         return redirect('articles:index')
+   else:
+      form = CustomUserCreationForm()
+   context = {
+      'form' : form,
+   }
+   return render(request, 'accounts/signup.html', context)
+```
+
+accounts/signup.html 생성
+```html
+<form action="{% url 'accounts:signup'%}"  method="POST">
+   {% csrf_token %}
+   {{form.as_p}}
+   <input type="submit">
+</form>
+```
+> migrate 한번 해주기
 
 
+## 회원 탈퇴
+
+accounts/urls.py
+```py
+   path('delete/', views.delete, name='delete'),
+```
+
+accounts/views.py
+```py
+def delete(request):
+   # 유저 삭제
+   request.user.delete()
+   # 세션 삭제 ( 필수 아님 )
+   auth_logout(request)
+   return redirect('articles:index')
+```
+
+articles/index.html
+```html
+<form action="{% url 'accounts:delete' %}" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="회원탈퇴">
+</form>
+
+```
+
+
+
+## 회원정보 수정
+
+accounts/forms.py
+```py
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+
+class CustomUserChangeForm(UserChangeForm):
+   class Meta(UserChangeForm.Meta):
+      model = get_user_model()
+      fields = ('email','first_name','last_name',)
+```   
+
+accounts/urls.py
+```py
+   path('update/', views.update, name='update')
+```
+
+accounts/views.py
+```py
+from .forms import CustomUserCreationForm, CustomUserChangeForm
+
+def update(request):
+   if request.method == 'POST':
+      form = CustomUserChangeForm(request.POST, instance=request.user) # 수정엔 instance가 들어감
+      if form.is_valid():
+         form.save()
+         return redirect('articles:index')
+   else:
+      form = CustomUserChangeForm(instance=request.user)
+   context = {
+      'form' : form,
+   }
+   return render(request, 'accounts/update.html', context)
+```
+
+accounts/update.html
+```html
+<form action="{% url 'accounts:update' %}" method="POST">
+  {% csrf_token %}
+  {{ form.as_p}}
+  <input type="submit">
+</form>
+
+```
+
+
+## 비밀번호 변경
+
+accounts/urls.py
+```py
+   path('password/', views.change_password, name='change_password'),
+```
+
+accounts/views.py
+```py
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+
+
+def change_password(request):
+   if request.method == 'POST':
+      form = PasswordChangeForm(request.user, request.POST)
+      if form.is_valid():
+         user = form.save()
+         # 비밀번호 변경시 세션 무효화 방지
+         update_session_auth_hash(request, user)
+         return redirect('articles:index')
+   else:
+      form = PasswordChangeForm(request.user) # request.user 필수로 넣기
+   context = {
+      'form': form,
+   }
+   return render(request, 'accounts/change_password.html', context)
+
+```
+
+accounts/change_password.html 생성
+```html
+<form action="{% url 'accounts:change_password' %}" method="POST">
+  {% csrf_token %}
+  {{ form.as_p}}
+  <input type="submit">
+</form>
+```
+
+
+
+
+
+## 비로그인 , 로그인 화면 다르게 나타내기
+
+articles/index.html
+```html
+  {% if request.user.is_authenticated %}
+    <h3>안녕하세요, {{ user }} 님!</h3>
+    <form action="{% url 'accounts:logout' %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="Logout">
+    </form>
+    <form action="{% url 'accounts:delete' %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="회원탈퇴">
+    </form>
+    <a href="{% url 'accounts:update' %}">회원정보수정</a>
+  {% else %}
+    <a href="{% url 'accounts:login' %}">Login</a>
+    <a href="{% url 'accounts:signup' %}">Signup</a>
+  {% endif %}
+```
+
+accounts/views.py
+```py
+def login(request):
+    if request.user.is_authenticated:
+        return redirect('articles:index')
+
+    if request.method == 'POST':
+        form = AuthenticationForm(request, request.POST)
+        if form.is_valid():
+            auth_login(request, form.get_user())
+            return redirect('articles:index')
+    else:
+        form = AuthenticationForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'accounts/login.html', context)
+
+
+def signup(request):
+    if request.user.is_authenticated:
+        return redirect('articles:index')
+    
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('articles:index')
+    else:
+        form = CustomUserCreationForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'accounts/signup.html', context)
+
+```
+
+
+## 데코레이터
+- 로그인 된 사용자만 쓸 수 있도록
+articles/views.py
+```py
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def create(request):
+    if request.method == 'POST':
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            article = form.save()
+            return redirect('articles:detail', article.pk)
+    else:
+        form = ArticleForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'articles/new.html', context)
+
+
+@login_required
+def delete(request, artilce_pk):
+    # 삭제할 데이터 조회
+    article = Article.objects.get(pk=artilce_pk)
+
+    # 조회한 데이터 삭제(DELETE)
+    article.delete()
+
+    # 전체 조회 페이지 이동
+    return redirect('articles:index')
+
+
+@login_required
+def update(request, article_pk):
+    article = Article.objects.get(pk=article_pk)
+    if request.method == 'POST':
+        form = ArticleForm(request.POST, instance=article)
+        if form.is_valid():
+            form.save()
+            return redirect('articles:detail', article.pk)
+    else:
+        form = ArticleForm(instance=article)
+    context = {
+        'article': article,
+        'form': form,
+    }
+    return render(request, 'articles/edit.html', context)
+```
+
+
+accounts/views.py
+```py
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def logout(request):
+    auth_logout(request)
+    return redirect('articles:index')
+
+@login_required
+def delete(request):
+    # print(dir(request.user))
+    request.user.delete()
+    return redirect('articles:index')
+
+@login_required
+def update(request):
+    if request.method == 'POST':
+        form = CustomUserChangeForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('articles:index')
+    else:
+        form = CustomUserChangeForm(instance=request.user)
+    context = {
+        'form': form,
+    }
+    return render(request, 'accounts/update.html', context)
+
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            # 비밀번호 변경시 세션 무효화 방지
+            update_session_auth_hash(request, user)
+            return redirect('articles:index')
+    else:
+        form = PasswordChangeForm(request.user)
+    context = {
+        'form': form,
+    }
+    return render(request, 'accounts/change_password.html', context)
+
+```
 
 
 
