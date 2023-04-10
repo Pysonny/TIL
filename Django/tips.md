@@ -207,6 +207,14 @@ def index(request):
        <p>article.content : {{ article.content}} </p> 
     {% endfor %}
 
+
+## 추가경로
+
+settings.py => TEMPLATES
+'DIRS" : [기본 템플릿 경로 외에 추가 경로를 작성],
+ex[ BASE_DIR / 'my_templates']
+
+
 ## QuerySet API 
 > 터미널
 ``` pip install ipython django-extensions ```
@@ -959,36 +967,137 @@ def change_password(request):
 ```
 
 
+## static
+
+- 파일 생성
+articles/static 생성
+static/articles 생성
 
 
+- articles에 png 넣기
+
+python manage.py migrate
+
+- articles/index.html
+```html
+<body>
+   <img src="{% static 'articles/sample-1.png' %}" alt="img">
+</body>
+```
+
+crud/settings.py
+```py
+   STATICFILES_DIRS = [
+      BASE_DIR / 'static',
+   ]
+```
+
+- static 폴더 생성
+- static 폴더에 png 넣기
+
+articles/index.html
+```html
+<body>
+   <img src="{% static 'sample-2.png' %}" alt="img">
+</body>
+```
+
+- stylesheet 만들기
+static/articles/ style.css 생성
+
+```css
+h1 {
+   color: red;
+}
+```
+
+- articles/index.html
+```html
+<head>
+   <link rel="stylesheet" href="{% static 'articles/style.css' %}">
+</head>
+```
 
 
+## media
+crud/settings.py
+```py
+   MEDIA_ROOT = BASE_DIR / 'media'
+
+   MEDIA_URL = '/media/'
+```
 
 
+crud/urls.py
+```py
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+   ...,
+   ...,
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+```
+
+articles/models.py
+```py
+   # MEDIA_ROOT 이후의 추가 경로를 설정 => upload_to
+   image = models.ImageField(blank=True, upload_to='%Y/%m/%d')
+```
+
+terminal 
+` pip install Pillow `
+
+` pip freeze > requirements.txt `
+
+` python manage.py makemigrations `
+
+` python manage.py migrate `
 
 
-## 추가경로
-
-settings.py => TEMPLATES
-'DIRS" : [기본 템플릿 경로 외에 추가 경로를 작성],
-ex[ BASE_DIR / 'my_templates']
-
-
-
-
-
-
-
-
-
-
-
-
-
+articles/views.py
+```py
+def create(request):
+    if request.method == 'POST':
+        # print(request.FILES) 추가
+        form = ArticleForm(request.POST, request.FILES)
+        if form.is_valid():
+            article = form.save()
+            return redirect('articles:detail', article.pk)
+    else:
+        form = ArticleForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'articles/create.html', context)
+```
 
 
+articles/detail.html
+```html
+<!-- 맨 위에 추가 -->
+{% load static %}
 
+   {% if article.image %}
+      <img src="{{ article.image.url }}" alt="IMAGE">
+   {% else %}
+      <img src="{% static 'articles/no-image.png' %}" alt="no-img">
+   {% endif %}
+```
 
+articles/update.html
+```html
+  <form action="{% url 'articles:update' article.pk %}" method="POST" enctype="multipart/form-data">
+   <!-- enctype="multipart/form-data" -->
+
+```
+
+articles/views.py
+def update
+```py
+   form = ArticleForm(request.POST, request.FILES, instance=article)
+```
 
 
 
