@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">제목</th>
+            <th scope="col">내용</th>
+            <th scope="col">댓글 수</th>
+            <th scope="col">삭제</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for article in articles %}
+          <tr>
+            <th scope="row">{{ article.pk}}</th>
+            <td>      
+              <a href="{% url 'articles:detail' article.pk %}">{{ article.title }}</a>
+            </td>
+            <td>{{ article.content }}</td>
+            <td>{{ article.comment_set.all|length}}</td>
+            <td>
+              <form action="{% url 'articles:delete' article.pk %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="삭제">
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+{% endblock content %}

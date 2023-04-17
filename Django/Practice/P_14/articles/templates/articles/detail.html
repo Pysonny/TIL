@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Detail</h1>
+<p>글 번호: {{ article.pk }}</p>
+<p>제목: {{ article.title }}</p>
+<p>내용: {{ article.content }}</p>
+<div class="d-flex gap-3">
+  {% if request.user == article.user %}
+  <form action="{% url 'articles:delete' article.pk  %}" method="POST">
+    {% csrf_token %}
+    <input class="btn btn-sm btn-primary" type="submit" value="삭제">
+  </form>
+  <a class="btn btn-sm btn-primary" href="{% url 'articles:update' article.pk %}">UPDATE</a>
+  {% endif %}
+</div>
+<ul>
+  {% for comment in comments %}
+    <li>
+      {{ comment.user }} - {{ comment.content }}
+      {% if request.user == comment.user %}
+        <form action="{% url 'articles:comment_delete' article.pk comment.pk %}" method="POST">
+          {% csrf_token %}
+          <input type="submit" value="삭제">
+        </form>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+<hr>
+<form action="{% url 'articles:comment_create' article.pk %}" method="POST">
+  {% csrf_token %}
+  {{ comment_form }}
+  <input type="submit">
+</form>
+
+{% endblock content %}

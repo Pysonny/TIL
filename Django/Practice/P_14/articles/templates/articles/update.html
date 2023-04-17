@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Edit</h1>
+
+<form action="{% url 'articles:update' article.pk %}" method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <div class="d-flex justify-content-end gap-3">
+    <input class="btn btn-primary" type="submit" value="UPDATE">
+  </div>
+</form>
+{% endblock content %}
