@@ -1,4 +1,3 @@
-
 # Django 사용법
 
 1. vscode extension 설치
@@ -322,7 +321,7 @@ class ArticleForm(forms.Form):
 - form class 를 적용한 new 로직
 
 ```py
-form .forms import ArticleForm
+from .forms import ArticleForm
 
 def new(request):
    form = ArticleForm()
@@ -334,7 +333,7 @@ def new(request):
 
 - articles/new.html 에 form 적용
 
-```pyㅣ멱ㄷ
+```py
 {{ form }}
 
 ```
@@ -967,6 +966,7 @@ def change_password(request):
 ```
 
 
+<!-- 이미지 넣기 -->
 ## static
 
 - 파일 생성
