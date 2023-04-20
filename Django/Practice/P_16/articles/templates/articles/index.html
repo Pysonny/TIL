@@ -30,7 +30,21 @@
       <p>게시글 번호 -
         {{ article.pk }}
       </p>
+      <p>
+        게시글 작성자 - 
+        <a href="{% url 'accounts:profile' article.user %}">
+          {{article.user}}
+        </a>
+      </p>
     </div>
+    <form action="{% url 'articles:likes' article.pk %}" method="POST">
+      {% csrf_token %}
+      {% if request.user in article.like_users.all %}
+        <input type="submit" value="좋아요 취소">
+      {% else %}
+        <input type="submit" value="좋아요">
+      {% endif %}
+    </form>
     <a href="{% url 'articles:detail' article.pk %}">[게시글 조회]</a>
     <hr>
   {% endfor %}
